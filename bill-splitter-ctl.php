@@ -1,19 +1,19 @@
 <?php
 
 $total_charged = 0;
-$tips_rate = 0;
-$total = 0;
-$tips = 0;
+$tips_rate     = 0;
+$total         = 0;
+$tips          = 0;
 
-$number_people = 1;
+$number_people      = 1;
 $charged_per_person = 0;
-$tips_per_person = 0;
-$total_per_person = 0;
+$tips_per_person    = 0;
+$total_per_person   = 0;
 
-$round_up = false;
+$round_up         = false;
 $round_up_checked = '';
 
-$selected_0 = '';
+$selected_0  = '';
 $selected_10 = '';
 $selected_15 = '';
 $selected_18 = '';
@@ -47,10 +47,10 @@ if (isset($_POST['submit']) && isset($_POST['submit']) == 'Calculate') {
     // Round Up
     if (isset($_POST['round_up'])) {
         $round_up_checked = 'checked';
-        $round_up = true;
+        $round_up         = true;
     } else {
         $round_up_checked = '';
-        $round_up = false;
+        $round_up         = false;
     }
 
     // Validation
@@ -88,18 +88,18 @@ switch ($tips_rate) {
 
 if (sizeof($error_msg) == 0) {
     // Calculate
-    $tips = $total_charged * $tips_rate;
-    $tips_per_person = $tips / $number_people;
-    $total = $total_charged + $tips;
+    $tips               = $total_charged * $tips_rate;
+    $tips_per_person    = $tips / $number_people;
+    $total              = $total_charged + $tips;
     $charged_per_person = $total_charged / $number_people;
-    $total_per_person = $total / $number_people;
+    $total_per_person   = $total / $number_people;
     // Format Numbers
-    $total_charged = number_format($total_charged, 2, '.', '');
-    $tips = number_format($tips, 2, '.', '');
-    $tips_per_person = number_format($tips_per_person, 2, '.', '');
-    $total = number_format($total, 2, '.', '');
+    $total_charged      = number_format($total_charged, 2, '.', '');
+    $tips               = number_format($tips, 2, '.', '');
+    $tips_per_person    = number_format($tips_per_person, 2, '.', '');
+    $total              = number_format($total, 2, '.', '');
     $charged_per_person = number_format($charged_per_person, 2, '.', '');
-    $total_per_person = number_format($total_per_person, 2, '.', '');
+    $total_per_person   = number_format($total_per_person, 2, '.', '');
 
     if ($round_up) {
         $total_per_person = round($total_per_person);
