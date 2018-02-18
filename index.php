@@ -1,5 +1,5 @@
 <?php
-require "bill-splitter-ctl.php";
+require "bill-splitter-logic.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,26 +18,32 @@ require "bill-splitter-ctl.php";
 <body>
 <div class="container">
     <h2 class="text-center">Bill Splitter</h2>
+    <!-- Display Errors -->
     <div class="row">
         <div class="col-sm-offset-2 col-md-offset-2 col-lg-offset-3 col-xs-12 col-sm-8 col-md-8 col-lg-6">
-            <?php foreach ($error_msg as $msg): ?>
-                <div class="alert alert-danger">
-                    <?=$msg?>
-                </div>
-            <?php endforeach?>
+             <?php if ($formUtil->isSubmitted() && $formUtil->hasErrors): ?>
+                 <div class='alert alert-danger'>
+                     <ul>
+                         <?php foreach ($errors as $error): ?>
+                             <li><?=$error?></li>
+                         <?php endforeach;?>
+                     </ul>
+                 </div>
+             <?php endif;?>
         </div>
     </div>
 
+    <!-- Calculator Form -->
     <form action="" method="POST">
         <div class="row">
             <div class="col-sm-offset-2 col-md-offset-2 col-lg-offset-3 col-xs-12 col-sm-8 col-md-8 col-lg-6">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
                     <input type="number"
-                           name="total_charged"
+                           name="charged"
                            class="form-control"
                            placeholder="Total"
-                           value="<?=$total_charged?>"
+                           value='<?= $formUtil->prefill("charged", "") ?>'
                            step="0.01">
                 </div>
                 <br>
@@ -47,17 +53,17 @@ require "bill-splitter-ctl.php";
                            name="number_people"
                            class="form-control"
                            placeholder="Numer of People"
-                           value="<?=$number_people?>">
+                           value='<?= $formUtil->prefill("number_people", "") ?>'>
                 </div>
                 <br>
                 <div class="input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-scale"></i></span>
-                    <select name="tips_rate" class="form-control" value="<?=$tips_rate?>">
-                        <option value="0" <?=$selected_0?> >Satisfaction</option>
-                        <option value="15" <?=$selected_15?> >Normal Lunch - 15%</option>
-                        <option value="18" <?=$selected_18?> >Normal Dinner - 18%</option>
-                        <option value="20" <?=$selected_20?> >Amazing - 20%</option>
-                        <option value="10" <?=$selected_10?> >Not Satisfied - 10%</option>
+                    <select name="tips_rate" class="form-control" value='<?= $formUtil->prefill("tips_rate", "") ?>'>
+                        <option value="0"  <?php if ($tips_rate == '' || $tips_rate == '0') echo 'selected'?> >Satisfaction</option>
+                        <option value="15" <?php if ($tips_rate == '15') echo 'selected'?> >Normal Lunch - 15%</option>
+                        <option value="18" <?php if ($tips_rate == '18') echo 'selected'?> >Normal Dinner - 18%</option>
+                        <option value="20" <?php if ($tips_rate == '20') echo 'selected'?> >Amazing - 20%</option>
+                        <option value="10" <?php if ($tips_rate == '10') echo 'selected'?> >Not Satisfied - 10%</option>
                     </select>
                 </div>
             </div>
@@ -66,32 +72,33 @@ require "bill-splitter-ctl.php";
             <p class="text-center">
                 <br><label class="checkbox-inline"><input type="checkbox"
                                                           name="round_up"
-                                                          value="yes" <?=$round_up_checked?> >Round Up</label>
+                                                          value="yes" <?php if ($round_up_checked) echo 'checked'?> >Round Up</label>
                 <br><br><input type="submit" class="btn btn-primary" name="submit" value="Calculate">
             </p>
         </div>
     </form>
 
+    <!-- Display Result -->
     <div class="row">
         <div class="col-sm-offset-2 col-md-offset-2 col-lg-offset-3 col-xs-12 col-sm-8 col-md-8 col-lg-6">
             <div class="row">
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                    <div class="well">
-                        <p>
+                    <div class="well">                        
                         <h4>All Together</h4>
-                        <label>Charged:</label> $<?=$total_charged?><br>
-                        <label>Tips:</label> $<?=$tips?><br>
-                        <label>Total:</label> $<?=$total?>
+                        <p>
+                            <label>Charged:</label> $<?= $charged ?><br>
+                            <label>Tips:</label> $<?= $tips ?><br>
+                            <label>Total:</label> $<?= $total ?>
                         </p>
                     </div>
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                    <div class="well">
-                        <p>
+                    <div class="well">                        
                         <h4>Per Person</h4>
-                        <label>Charged:</label> $<?=$charged_per_person?><br>
-                        <label>Tips:</label> $<?=$tips_per_person?><br>
-                        <label>Owns:</label> $<u><?=$total_per_person?></u>
+                        <p>
+                            <label>Charged:</label> $<?= $charged_per_person ?><br>
+                            <label>Tips:</label> $<?= $tips_per_person ?><br>
+                            <label>Owns:</label> $<?= $total_per_person ?>
                         </p>
                     </div>
                 </div>
