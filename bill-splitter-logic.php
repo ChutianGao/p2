@@ -17,6 +17,14 @@ $total_per_person   = 0;
 $round_up         = false;
 $round_up_checked = false;
 
+// Define Field Title
+$field_titles = array (
+    'charged'       => 'Total Charged',
+    'number_people' => 'Number of People',
+    'tips_rate'     => 'Satisfaction'
+);
+
+
 $formUtil = new Form($_POST);
 
 $errors = $formUtil->validate(
@@ -24,8 +32,9 @@ $errors = $formUtil->validate(
         'charged'       => 'required|numeric',
         'number_people' => 'required|numeric',
         'tips_rate'     => 'required|numeric|min:0|max:100',
-    ]
+    ], $field_titles
 );
+
 
 // Assign Values
 $charged       = $formUtil->sanitize($formUtil->get('charged'));

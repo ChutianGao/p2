@@ -111,7 +111,7 @@ class Form
      * @param $fieldsToValidate
      * @return array
      */
-    public function validate($fieldsToValidate)
+    public function validate($fieldsToValidate, $fieldTitles)
     {
         $errors = [];
 
@@ -134,6 +134,9 @@ class Form
 
                 # Test failed
                 if (!$test) {
+                    if (isset($fieldTitles[$fieldName])) {
+                        $fieldName = $fieldTitles[$fieldName];
+                    }
                     $errors[] = 'The field ' . $fieldName . $this->getErrorMessage($rule, $parameter);
 
                     # Only indicate one error per field
