@@ -1,12 +1,13 @@
 # Project 2
-+ By: *your first and last name*
-+ Production URL: <http://p2.yourdomain.com>
++ By: Chutian Gao
++ Production URL: <http://p2.findcharlie.me>
 
 ## Outside resources
-*your list of outside resources go here*
+Bootstrap 3.3: <https://getbootstrap.com/docs/3.3/getting-started/>
+Form Class: <https://github.com/susanBuck/dwa15-php/blob/master/includes/Form.php>
 
 ## Code style divergences
-*list any divergences from PSR-1/PSR-2 and course guidelines on code style*
+NA
 
 ## Notes for instructor
-*any notes for me to refer to while grading; if none, omit this section*
+NA
