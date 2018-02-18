@@ -72,7 +72,8 @@ require "bill-splitter-logic.php";
             <p class="text-center">
                 <br><label class="checkbox-inline"><input type="checkbox"
                                                           name="roundUp"
-                                                          value="yes" <?php if ($roundUpChecked) echo 'checked'?> >Round Up</label>
+                                                          value="yes" 
+                                                          <?php if ($roundUpChecked) echo 'checked'?> >Round Up</label>
                 <br><br><input type="submit" class="btn btn-primary" name="submit" value="Calculate">
             </p>
         </div>
