@@ -109,6 +109,7 @@ class Form
      * Stops after the first error for a given field
      * Available rules: alphaNumeric, alpha, numeric, required, email, min:x, max:x
      * @param $fieldsToValidate
+     * @param $fieldTitles
      * @return array
      */
     public function validate($fieldsToValidate, $fieldTitles)

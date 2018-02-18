@@ -3,70 +3,70 @@ require "Form.php";
 
 use DWA\Form;
 
-$charged   = 0;
-$tips_rate = 0;
-$tips      = 0;
-$total     = 0;
+// Default Values
+$charged  = 0;
+$tipsRate = 0;
+$tips     = 0;
+$total    = 0;
 
-$number_people      = 1;
-$tips_rate_float    = 0;
-$charged_per_person = 0;
-$tips_per_person    = 0;
-$total_per_person   = 0;
+$numberPeople     = 1;
+$tipsRateFloat    = 0;
+$chargedPerPerson = 0;
+$tipsPerPerson    = 0;
+$totalPerPerson   = 0;
 
-$round_up         = false;
-$round_up_checked = false;
+$roundUp        = false;
+$roundUpChecked = false;
 
 // Define Field Title
-$field_titles = array (
-    'charged'       => 'Total Charged',
-    'number_people' => 'Number of People',
-    'tips_rate'     => 'Satisfaction'
+$fieldTitles = array(
+    'charged'      => 'Total Charged',
+    'numberPeople' => 'Number of People',
+    'tipsRate'     => 'Satisfaction',
 );
 
-
+// Build Form
 $formUtil = new Form($_POST);
 
 $errors = $formUtil->validate(
     [
-        'charged'       => 'required|numeric',
-        'number_people' => 'required|numeric',
-        'tips_rate'     => 'required|numeric|min:0|max:100',
-    ], $field_titles
+        'charged'      => 'required|numeric',
+        'numberPeople' => 'required|numeric',
+        'tipsRate'     => 'required|numeric|min:0|max:100',
+    ], $fieldTitles
 );
 
-
 // Assign Values
-$charged       = $formUtil->sanitize($formUtil->get('charged'));
-$tips_rate     = $formUtil->sanitize($formUtil->get('tips_rate'));
-$number_people = $formUtil->sanitize($formUtil->get('number_people'));
+$charged      = $formUtil->sanitize($formUtil->get('charged'));
+$tipsRate     = $formUtil->sanitize($formUtil->get('tipsRate'));
+$numberPeople = $formUtil->sanitize($formUtil->get('numberPeople'));
 
-if ($formUtil->has('round_up')) {
-    $round_up = $formUtil->get('round_up');
-    if ($round_up == 'yes') {
-        $round_up_checked = true;
+if ($formUtil->has('roundUp')) {
+    $roundUp = $formUtil->get('roundUp');
+    if ($roundUp == 'yes') {
+        $roundUpChecked = true;
     }
 }
 
 // Calculate
 if ($formUtil->isSubmitted() && !$formUtil->hasErrors) {
 
-    $tips_rate_float    = floatval($tips_rate) / 100;
-    $tips               = $charged * $tips_rate_float;
-    $tips_per_person    = $tips / $number_people;
-    $total              = $charged + $tips;
-    $charged_per_person = $charged / $number_people;
-    $total_per_person   = $total / $number_people;
+    $tipsRateFloat    = floatval($tipsRate) / 100;
+    $tips             = $charged * $tipsRateFloat;
+    $tipsPerPerson    = $tips / $numberPeople;
+    $total            = $charged + $tips;
+    $chargedPerPerson = $charged / $numberPeople;
+    $totalPerPerson   = $total / $numberPeople;
 
     // Format Numbers
-    $charged            = number_format($charged, 2, '.', '');
-    $tips               = number_format($tips, 2, '.', '');
-    $tips_per_person    = number_format($tips_per_person, 2, '.', '');
-    $total              = number_format($total, 2, '.', '');
-    $charged_per_person = number_format($charged_per_person, 2, '.', '');
-    $total_per_person   = number_format($total_per_person, 2, '.', '');
+    $charged          = number_format($charged, 2, '.', '');
+    $tips             = number_format($tips, 2, '.', '');
+    $tipsPerPerson    = number_format($tipsPerPerson, 2, '.', '');
+    $total            = number_format($total, 2, '.', '');
+    $chargedPerPerson = number_format($chargedPerPerson, 2, '.', '');
+    $totalPerPerson   = number_format($totalPerPerson, 2, '.', '');
 
-    if ($round_up_checked) {
-        $total_per_person = round($total_per_person);
+    if ($roundUpChecked) {
+        $totalPerPerson = round($totalPerPerson);
     }
 }

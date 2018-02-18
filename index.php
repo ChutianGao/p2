@@ -25,7 +25,7 @@ require "bill-splitter-logic.php";
                  <div class='alert alert-danger'>
                      <ul>
                          <?php foreach ($errors as $error): ?>
-                             <li><?=$error?></li>
+                             <li><?= $error ?></li>
                          <?php endforeach;?>
                      </ul>
                  </div>
@@ -50,20 +50,20 @@ require "bill-splitter-logic.php";
                 <div class="input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                     <input type="number"
-                           name="number_people"
+                           name="numberPeople"
                            class="form-control"
                            placeholder="Numer of People"
-                           value='<?= $formUtil->prefill("number_people", "") ?>'>
+                           value='<?= $formUtil->prefill("numberPeople", "") ?>'>
                 </div>
                 <br>
                 <div class="input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-scale"></i></span>
-                    <select name="tips_rate" class="form-control" value='<?= $formUtil->prefill("tips_rate", "") ?>'>
-                        <option value="0"  <?php if ($tips_rate == '' || $tips_rate == '0') echo 'selected'?> >Satisfaction</option>
-                        <option value="15" <?php if ($tips_rate == '15') echo 'selected'?> >Normal Lunch - 15%</option>
-                        <option value="18" <?php if ($tips_rate == '18') echo 'selected'?> >Normal Dinner - 18%</option>
-                        <option value="20" <?php if ($tips_rate == '20') echo 'selected'?> >Amazing - 20%</option>
-                        <option value="10" <?php if ($tips_rate == '10') echo 'selected'?> >Not Satisfied - 10%</option>
+                    <select name="tipsRate" class="form-control" value='<?= $formUtil->prefill("tipsRate", "") ?>'>
+                        <option value=""   <?php if ($tipsRate == '') echo 'selected'?> >Satisfaction</option>
+                        <option value="15" <?php if ($tipsRate == '15') echo 'selected'?> >Normal Lunch - 15%</option>
+                        <option value="18" <?php if ($tipsRate == '18') echo 'selected'?> >Normal Dinner - 18%</option>
+                        <option value="20" <?php if ($tipsRate == '20') echo 'selected'?> >Amazing - 20%</option>
+                        <option value="10" <?php if ($tipsRate == '10') echo 'selected'?> >Not Satisfied - 10%</option>
                     </select>
                 </div>
             </div>
@@ -71,8 +71,8 @@ require "bill-splitter-logic.php";
         <div class="row">
             <p class="text-center">
                 <br><label class="checkbox-inline"><input type="checkbox"
-                                                          name="round_up"
-                                                          value="yes" <?php if ($round_up_checked) echo 'checked'?> >Round Up</label>
+                                                          name="roundUp"
+                                                          value="yes" <?php if ($roundUpChecked) echo 'checked'?> >Round Up</label>
                 <br><br><input type="submit" class="btn btn-primary" name="submit" value="Calculate">
             </p>
         </div>
@@ -96,9 +96,9 @@ require "bill-splitter-logic.php";
                     <div class="well">                        
                         <h4>Per Person</h4>
                         <p>
-                            <label>Charged:</label> $<?= $charged_per_person ?><br>
-                            <label>Tips:</label> $<?= $tips_per_person ?><br>
-                            <label>Owns:</label> $<?= $total_per_person ?>
+                            <label>Charged:</label> $<?= $chargedPerPerson ?><br>
+                            <label>Tips:</label> $<?= $tipsPerPerson ?><br>
+                            <label>Owns:</label> $<?= $totalPerPerson ?>
                         </p>
                     </div>
                 </div>
