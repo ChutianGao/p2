@@ -74,7 +74,9 @@ require "bill-splitter-logic.php";
                                                           name="roundUp"
                                                           value="yes" 
                                                           <?php if ($roundUpChecked) echo 'checked'?> >Round Up</label>
-                <br><br><input type="submit" class="btn btn-primary" name="submit" value="Calculate">
+                <br>
+                <br>
+                <input type="submit" class="btn btn-primary" name="submit" value="Calculate">
             </p>
         </div>
     </form>
