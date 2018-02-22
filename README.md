@@ -11,4 +11,5 @@
 + In Associate Arrays, I used multiple spaces before or after `=>` in order to make the keys and values are aligned to the left. 
 
 ## Notes for instructor
-I edited `Form.php` and added one parameter to function `validation()` so that it can display customized field names (titles).
++ I edited `Form.php` and added one parameter to function `validation()` so that it can display customized field names (titles).
++ Also replaced `ctype_digit()` with `is_numeric()` used by `numeric()` function in `Form` Class becauce `ctype_digit($dollars)` returns `false` when `$dollars` is a float.

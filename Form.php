@@ -208,7 +208,7 @@ class Form
      */
     protected function numeric($value)
     {
-        return ctype_digit(str_replace(' ', '', $value));
+        return is_numeric(str_replace(' ', '', $value));
     }
 
     /**
