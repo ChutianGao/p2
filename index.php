@@ -6,7 +6,7 @@ require "bill-splitter-logic.php";
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Bill Splitter PHP App">
     <meta name="author" content="Chutian Gao">
     <meta name="mobile-web-app-capable" content="yes">
@@ -34,7 +34,7 @@ require "bill-splitter-logic.php";
     </div>
 
     <!-- Calculator Form -->
-    <form action="" method="POST">
+    <form action="index.php" method="POST">
         <div class="row">
             <div class="col-sm-offset-2 col-md-offset-2 col-lg-offset-3 col-xs-12 col-sm-8 col-md-8 col-lg-6">
                 <div class="input-group">
@@ -58,7 +58,7 @@ require "bill-splitter-logic.php";
                 <br>
                 <div class="input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-scale"></i></span>
-                    <select name="tipsRate" class="form-control" value='<?= $formUtil->prefill("tipsRate", "") ?>'>
+                    <select name="tipsRate" class="form-control">
                         <option value=""   <?php if ($tipsRate == '') echo 'selected'?> >Satisfaction</option>
                         <option value="15" <?php if ($tipsRate == '15') echo 'selected'?> >Normal Lunch - 15%</option>
                         <option value="18" <?php if ($tipsRate == '18') echo 'selected'?> >Normal Dinner - 18%</option>
